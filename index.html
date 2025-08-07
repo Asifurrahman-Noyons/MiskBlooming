@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISK BLOOMING - Where Emotions Blossom</title>
+    
+    <!-- Tailwind CSS & DaisyUI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#f43f5e',
+                        'primary-focus': '#be123c',
+                        'accent': '#fef7f7',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .playfair { font-family: 'Playfair Display', serif; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #fef7f7 0%, #fdf2f8 50%, #f9fafb 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cart-badge {
+            animation: bounce 0.5s;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .mobile-nav {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+.fade-carousel {
+  position: relative;
+}
+.fade-carousel .slide {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.fade-carousel .slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+    </style>
+</head>
+
+<body class="font-inter">
+    <!-- Desktop Navigation -->
+    <div class="navbar bg-white/95 backdrop-blur-md fixed top-0 z-50 shadow-sm hidden lg:flex">
+        <div class="navbar-start">
+            <!--<div class="avatar">-->
+            <!--    <div class="w-10 rounded-full bg-gradient-to-r from-primary to-primary-focus">-->
+            <!--        <span class="text-white font-bold">M</span>-->
+            <!--    </div>-->
+            <!--</div>-->
+            <a class=" colro-text-xl playfair font-semibold ml-2">MISK BLOOMING</a>
+        </div>
+        
+        <div class="navbar-center">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#home" class="hover:text-primary">Home</a></li>
+                <li><a href="#products" class="hover:text-primary">Products</a></li>
+                <li><a href="#about" class="hover:text-primary">About</a></li>
+                <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+            </ul>
+        </div>
+        
+        <div class="navbar-end gap-2">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <div class="indicator">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                        <span class="badge badge-sm badge-primary indicator-item" id="cart-count">0</span>
+                    </div>
+                </div>
+                <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-80 bg-base-100 shadow-sm">
+                    <div class="card-body">
+                        <span class="font-bold text-lg">Cart Items</span>
+                        <div id="cart-items" class="space-y-2">
+                            <p class="text-gray-500" id="empty-cart">Your cart is empty</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary btn-block" onclick="viewCart()">View Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary">Order Now</button>
+        </div>
+    </div>
+
+<!-- Mobile Bottom Navigation -->
+<div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white border-t border-gray-200 shadow-md">
+    <div class="flex justify-around items-center py-2">
+        <a href="#home" class="flex flex-col items-center text-primary hover:text-blue-500 transition">
+            <i class="fas fa-home text-xl mb-1"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="#products" class="flex flex-col items-center hover:text-blue-500 transition">
+            <i class="fas fa-th-large text-xl mb-1"></i>
+            <span class="text-xs">Products</span>
+        </a>
+        <a onclick="viewCart()" class="flex flex-col items-center relative hover:text-blue-500 transition">
+            <div class="relative">
+                <i class="fas fa-shopping-cart text-xl mb-1"></i>
+                <span class="absolute -top-1 -right-2 bg-blue-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full" id="mobile-cart-count">0</span>
+            </div>
+            <span class="text-xs">Cart</span>
+        </a>
+        <a href="#about" class="flex flex-col items-center hover:text-blue-500 transition">
+            <i class="fas fa-user text-xl mb-1"></i>
+            <span class="text-xs">About</span>
+        </a>
+        <a href="#contact" class="flex flex-col items-center hover:text-blue-500 transition">
+            <i class="fas fa-phone text-xl mb-1"></i>
+            <span class="text-xs">Contact</span>
+        </a>
+    </div>
+</div>
+
+<!-- Website Header -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-white lg:bg-transparent px-4 py-3 shadow-sm lg:hidden">
+  <!-- Logo + Site Name -->
+  <div class="flex items-center space-x-2">
+    <!--<img src="/logo.svg" alt="Logo" class="h-8 w-8" />-->
+    <span class="text-xl font-bold tracking-tight text-primary lg:text-white">MISK Blooming</span>
+  </div>
+</header>
+
+<!-- Hero Section with Custom Carousel -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-100 pt-16">
+
+  <!-- Carousel Background with Fade Animation -->
+  <div id="hero-carousel" class="absolute inset-0 z-0">
+    <div class="fade-carousel w-full h-full">
+      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1600&h=1000&fit=crop&auto=format" class="w-full h-full object-cover rounded-none slide active" />
+      <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1600&h=1000&fit=crop&auto=format" class="w-full h-full object-cover rounded-none slide" />
+      <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1600&h=1000&fit=crop&auto=format" class="w-full h-full object-cover rounded-none slide" />
+    </div>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/50 z-10"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-20 text-center lg:text-left px-6 max-w-4xl mx-auto text-white">
+    <div data-aos="fade-up">
+      <div class="bg-white/10 inline-block px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-md mb-4">
+        ✨ Premium Blooms & Gifts Since 2010
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold playfair leading-tight mb-6">
+        Let Your Emotions <br><span class="text-pink-300">Bloom with Grace</span>
+      </h1>
+      <p class="text-lg md:text-xl text-white/90 mb-8">
+        Discover curated flowers & gifts crafted with passion. Elegant designs, delivered with love.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8">
+        <button class="px-6 py-3 bg-primary text-white text-lg font-semibold rounded-full hover:bg-primary-focus transition-all">
+          Shop Now <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+        <button class="px-6 py-3 border border-white text-white text-lg font-semibold rounded-full hover:bg-white hover:text-black transition-all">
+          Explore Gifts
+        </button>
+      </div>
+      <div class="flex items-center justify-center lg:justify-start gap-4">
+        <div class="avatar-group -space-x-3">
+          <div class="avatar">
+            <div class="w-10">
+              <img src="https://images.unsplash.com/photo-1494790108755-2616c9c72dd2?w=40&h=40&fit=crop&crop=face&auto=format" />
+            </div>
+          </div>
+          <div class="avatar">
+            <div class="w-10">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face&auto=format" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="text-sm font-medium">15,000+ Happy Customers</p>
+          <div class="rating rating-sm">
+            <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" />
+            <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" checked />
+            <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" />
+            <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" />
+            <input type="radio" name="rating-6" class="mask mask-star-2 bg-yellow-400" />
+            <span class="text-sm ml-2">(4.9/5)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+const slides = document.querySelectorAll('.fade-carousel .slide');
+let index = 0;
+
+function showNextSlide() {
+  slides.forEach(slide => slide.classList.remove('active'));
+  index = (index + 1) % slides.length;
+  slides[index].classList.add('active');
+}
+
+slides[0].classList.add('active'); // Show first slide
+setInterval(showNextSlide, 5000);  // Change every 5 sec
+</script>
+
+
+
+
+
+
+
+
+
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="avatar bg-primary/10 w-16 h-16 rounded-full mx-auto mb-4">
+                        <i class="fas fa-clock text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Same-Day Delivery</h3>
+                    <p class="text-gray-600">Get your beautiful flowers delivered within hours. Order by 2 PM for same-day delivery.</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="avatar bg-primary/10 w-16 h-16 rounded-full mx-auto mb-4">
+                        <i class="fas fa-star text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Artisan Crafted Quality</h3>
+                    <p class="text-gray-600">Created by premium experience using only the finest quality flowers and materials.</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="avatar bg-primary/10 w-16 h-16 rounded-full mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Happiness Guaranteed</h3>
+                    <p class="text-gray-600">Not completely happy with your order? We'll make it right with our 100% satisfaction guarantee.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-bold playfair mb-4">
+                    Our Premium <span class="text-gradient">Collection</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Carefully curated collections designed to make every moment special and memorable.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+                <!-- Products will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Categories -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-bold playfair mb-4">
+                    Find the Perfect <span class="text-gradient">Gift</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Browse our curated gift categories for every special occasion and person in your life.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card bg-gradient-to-br from-rose-50 to-red-50 hover:shadow-sm transition-all duration-300" data-aos="flip-left">
+                    <div class="card-body text-center">
+                        <div class="text-4xl mb-4">💐</div>
+                        <h3 class="card-title justify-center">For Her</h3>
+                        <p class="text-gray-600">Elegant arrangements perfect for the special women in your life</p>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-primary btn-sm">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-gradient-to-br from-blue-50 to-indigo-50 hover:shadow-sm transition-all duration-300" data-aos="flip-left" data-aos-delay="100">
+                    <div class="card-body text-center">
+                        <div class="text-4xl mb-4">🎁</div>
+                        <h3 class="card-title justify-center">For Him</h3>
+                        <p class="text-gray-600">Sophisticated gifts and arrangements for the gentlemen</p>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-info btn-sm">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-gradient-to-br from-purple-50 to-rose-50 hover:shadow-sm transition-all duration-300" data-aos="flip-left" data-aos-delay="200">
+                    <div class="card-body text-center">
+                        <div class="text-4xl mb-4">🎂</div>
+                        <h3 class="card-title justify-center">Special Gifts</h3>
+                        <p class="text-gray-600">Unique combinations and limited edition collections</p>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-secondary btn-sm">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-sm transition-all duration-300" data-aos="flip-left" data-aos-delay="300">
+                    <div class="card-body text-center">
+                        <div class="text-4xl mb-4">🌿</div>
+                        <h3 class="card-title justify-center">Plants & More</h3>
+                        <p class="text-gray-600">Living plants and sustainable gift options</p>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-success btn-sm">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="hero">
+                <div class="hero-content flex-col lg:flex-row gap-12">
+                    <div class="lg:w-1/2" data-aos="fade-right">
+                        <h2 class="text-4xl lg:text-5xl font-bold playfair mb-6">
+                            Crafting Moments of <span class="text-gradient">Joy Since 2010</span>
+                        </h2>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            At MISK BLOOMING, we believe every moment deserves to be celebrated with 
+                            beautiful, hand-curated flowers. Our passionate team of floral artists 
+                            creates stunning arrangements that speak to the heart and bring joy to every occasion.
+                        </p>
+                        
+                        <div class="stats shadow bg-white rounded-2xl mb-8">
+                            <div class="stat">
+                                <div class="stat-value text-primary">50K+</div>
+                                <div class="stat-title">Happy Customers</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value text-primary">98%</div>
+                                <div class="stat-title">Satisfaction Rate</div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-lg">
+                            Learn More About Us
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="lg:w-1/2 relative" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1487070183336-b863922373d4?w=600&h=500&fit=crop&auto=format" 
+                             class="rounded-3xl shadow-sm w-full" alt="Florist at work">
+                        <div class="absolute -bottom-6 -left-6 card bg-white shadow-sm">
+                            <div class="card-body">
+                                <div class="flex items-center gap-4">
+                                    <div class="avatar bg-primary/10">
+                                        <div class="w-12 rounded-full">
+                                            <i class="fas fa-award text-primary text-xl"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Award Winning</h4>
+                                        <p class="text-sm text-gray-600">Florists & Artists</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-bold playfair mb-4">
+                    Get in <span class="text-gradient">Touch</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Have questions or need help choosing the perfect arrangement? We're here to help make your special moments unforgettable.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-8" data-aos="fade-right">
+                    <div class="flex items-start gap-4">
+                        <div class="avatar bg-primary/10">
+                            <div class="w-12 rounded-full">
+                                <i class="fas fa-phone text-primary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                            <p class="text-gray-600">+1 (555) 123-4567</p>
+                            <p class="text-sm text-gray-500">Mon-Fri 8AM-7PM, Sat-Sun 9AM-5PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="avatar bg-primary/10">
+                            <div class="w-12 rounded-full">
+                                <i class="fas fa-envelope text-primary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Email</h3>
+                            <p class="text-gray-600">hello@miskblooming.com</p>
+                            <p class="text-sm text-gray-500">We'll respond within 2 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="avatar bg-primary/10">
+                            <div class="w-12 rounded-full">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Address</h3>
+                            <p class="text-gray-600">123 Flower Street, Garden City, GC 12345</p>
+                            <p class="text-sm text-gray-500">Visit our beautiful showroom</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-base-100 shadow-sm" data-aos="fade-left">
+                    <form class="card-body" id="contactForm">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">First Name</span>
+                                </label>
+                                <input type="text" placeholder="John" class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Last Name</span>
+                                </label>
+                                <input type="text" placeholder="Doe" class="input input-bordered" required />
+                            </div>
+                        </div>
+                        
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Email</span>
+                            </label>
+                            <input type="email" placeholder="john@example.com" class="input input-bordered" required />
+                        </div>
+                        
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Message</span>
+                            </label>
+                            <textarea class="textarea textarea-bordered h-24" placeholder="Tell us about your floral needs..."></textarea>
+                        </div>
+                        
+                        <div class="form-control mt-6">
+                            <button class="btn btn-primary">
+                                Send Message
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-neutral text-neutral-content">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 w-full max-w-6xl">
+            <div data-aos="fade-up">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="avatar">
+                        <div class="w-8 rounded-full bg-gradient-to-r from-primary to-primary-focus flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">M</span>
+                        </div>
+                    </div>
+                    <span class="playfair font-semibold text-xl ml-2">MISK BLOOMING</span>
+                </div>
+                <p class="text-sm">Creating beautiful moments with premium flowers since 2010.</p>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="100">
+                <span class="footer-title">Quick Links</span>
+                <a class="link link-hover">About Us</a>
+                <a class="link link-hover">Our Story</a>
+                <a class="link link-hover">Blog</a>
+                <a class="link link-hover">Careers</a>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="200">
+                <span class="footer-title">Categories</span>
+                <a class="link link-hover">Wedding Flowers</a>
+                <a class="link link-hover">Birthday Gifts</a>
+                <a class="link link-hover">Sympathy</a>
+                <a class="link link-hover">Corporate</a>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="300">
+                <span class="footer-title">Contact</span>
+                <p class="text-sm">123 Flower Street<br>Garden City, GC 12345</p>
+                <p class="text-sm">+1 (555) 123-4567</p>
+                <p class="text-sm">hello@miskblooming.com</p>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-center w-full max-w-6xl">
+            <p>© 2024 MISK BLOOMING. All rights reserved.</p>
+            <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+                <a class="text-2xl hover:text-primary transition-colors"><i class="fab fa-facebook"></i></a>
+                <a class="text-2xl hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                <a class="text-2xl hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <dialog id="cart_modal" class="modal">
+        <div class="modal-box max-w-4xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-bold text-lg">Shopping Cart</h3>
+                <button class="btn btn-sm btn-circle btn-ghost" onclick="closeCart()">✕</button>
+            </div>
+            
+            <div id="cart-modal-content">
+                <div id="cart-items-list" class="space-y-4 mb-6">
+                    <!-- Cart items will be populated here -->
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-xl font-bold">Total: $<span id="cart-total">0.00</span></span>
+                    <div class="space-x-2">
+                        <button class="btn btn-outline" onclick="clearCart()">Clear Cart</button>
+                        <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="empty-cart-message" class="text-center py-8 hidden">
+                <i class="fas fa-shopping-cart text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500">Your cart is empty</p>
+                <button class="btn btn-primary mt-4" onclick="closeCart()">Continue Shopping</button>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    <!-- Checkout Modal -->
+    <dialog id="checkout_modal" class="modal">
+        <div class="modal-box max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-bold text-lg">Checkout</h3>
+                <button class="btn btn-sm btn-circle btn-ghost" onclick="closeCheckout()">✕</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold mb-4">Shipping Information</h4>
+                    <form id="checkout-form" class="space-y-4">
+                        <div class="form-control">
+                            <label class="label"><span class="label-text">Full Name</span></label>
+                            <input type="text" class="input input-bordered" required />
+                        </div>
+                        <div class="form-control">
+                            <label class="label"><span class="label-text">Email</span></label>
+                            <input type="email" class="input input-bordered" required />
+                        </div>
+                        <div class="form-control">
+                            <label class="label"><span class="label-text">Address</span></label>
+                            <input type="text" class="input input-bordered" required />
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="form-control">
+                                <label class="label"><span class="label-text">City</span></label>
+                                <input type="text" class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label"><span class="label-text">ZIP Code</span></label>
+                                <input type="text" class="input input-bordered" required />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Order Summary</h4>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div id="checkout-items" class="space-y-2 mb-4">
+                            <!-- Order items will be populated here -->
+                        </div>
+                        <div class="divider"></div>
+                        <div class="flex justify-between items-center text-xl font-bold">
+                            <span>Total:</span>
+                            <span>$<span id="checkout-total">0.00</span></span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-block mt-6" onclick="placeOrder()">
+                        <i class="fas fa-credit-card mr-2"></i>
+                        Place Order
+                    </button>
+                </div>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    <!-- Success Modal -->
+    <dialog id="success_modal" class="modal">
+        <div class="modal-box text-center">
+            <div class="text-6xl text-success mb-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-4">Order Placed Successfully!</h3>
+            <p class="mb-6">Thank you for your purchase. Your order will be processed shortly.</p>
+            <div class="modal-action justify-center">
+                <button class="btn btn-primary" onclick="closeSuccess()">Continue Shopping</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Auto-play carousel
+        let currentSlide = 1;
+        function autoSlide() {
+            currentSlide = currentSlide >= 3 ? 1 : currentSlide + 1;
+            document.getElementById(`slide${currentSlide}`).scrollIntoView({ behavior: 'smooth' });
+        }
+        setInterval(autoSlide, 4000);
+
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "Premium Rose Bouquet",
+                price: 89.99,
+                originalPrice: 109.99,
+                image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&h=300&fit=crop&auto=format",
+                rating: 5,
+                reviews: 124,
+                badge: "Best Seller",
+                badgeColor: "badge-error"
+            },
+            {
+                id: 2,
+                name: "Artisan Chocolate Box",
+                price: 49.99,
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&auto=format",
+                rating: 5,
+                reviews: 89
+            },
+            {
+                id: 3,
+                name: "Romantic Gift Set",
+                price: 129.99,
+                originalPrice: 149.99,
+                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&auto=format",
+                rating: 5,
+                reviews: 156,
+                badge: "New",
+                badgeColor: "badge-secondary"
+            },
+            {
+                id: 4,
+                name: "Elegant White Roses",
+                price: 79.99,
+                image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=300&fit=crop&auto=format",
+                rating: 5,
+                reviews: 98
+            },
+            {
+                id: 5,
+                name: "Mixed Flower Bouquet",
+                price: 69.99,
+                image: "https://images.unsplash.com/photo-1487070183336-b863922373d4?w=400&h=300&fit=crop&auto=format",
+                rating: 4,
+                reviews: 67
+            },
+            {
+                id: 6,
+                name: "Luxury Gift Box",
+                price: 199.99,
+                originalPrice: 249.99,
+                image: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=300&fit=crop&auto=format",
+                rating: 5,
+                reviews: 201,
+                badge: "Premium",
+                badgeColor: "badge-warning"
+            }
+        ];
+
+        // Cart management
+        let cart = JSON.parse(localStorage.getItem('miskBloomingCart')) || [];
+
+        function updateCartUI() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cartCount;
+            document.getElementById('mobile-cart-count').textContent = cartCount;
+            
+            if (cartCount > 0) {
+                document.getElementById('cart-count').classList.add('cart-badge');
+                document.getElementById('mobile-cart-count').classList.add('cart-badge');
+            }
+            
+            updateCartDropdown();
+            localStorage.setItem('miskBloomingCart', JSON.stringify(cart));
+        }
+
+        function updateCartDropdown() {
+            const cartItems = document.getElementById('cart-items');
+            const emptyCart = document.getElementById('empty-cart');
+            
+            if (cart.length === 0) {
+                emptyCart.style.display = 'block';
+                cartItems.innerHTML = '';
+                return;
+            }
+            
+            emptyCart.style.display = 'none';
+            cartItems.innerHTML = cart.slice(0, 3).map(item => `
+                <div class="flex justify-between items-center py-2">
+                    <div class="flex items-center gap-2">
+                        <img src="${item.image}" class="w-8 h-8 rounded object-cover" />
+                        <div>
+                            <p class="text-sm font-medium">${item.name}</p>
+                            <p class="text-xs text-gray-500">Qty: ${item.quantity}</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('') + (cart.length > 3 ? `<p class="text-xs text-center text-gray-500">+${cart.length - 3} more items</p>` : '');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            updateCartUI();
+            
+            // Show success toast
+            const toast = document.createElement('div');
+            toast.className = 'toast toast-top toast-end z-50';
+            toast.innerHTML = `
+                <div class="alert alert-success">
+                    <i class="fas fa-check"></i>
+                    <span>Added to cart!</span>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            updateCartModal();
+        }
+
+        function updateQuantity(productId, newQuantity) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                if (newQuantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    item.quantity = newQuantity;
+                    updateCartUI();
+                    updateCartModal();
+                }
+            }
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+            updateCartModal();
+        }
+
+        function viewCart() {
+            updateCartModal();
+            document.getElementById('cart_modal').showModal();
+        }
+
+        function closeCart() {
+            document.getElementById('cart_modal').close();
+        }
+
+        function updateCartModal() {
+            const cartItemsList = document.getElementById('cart-items-list');
+            const cartTotal = document.getElementById('cart-total');
+            const emptyMessage = document.getElementById('empty-cart-message');
+            const cartContent = document.getElementById('cart-modal-content');
+            
+            if (cart.length === 0) {
+                emptyMessage.classList.remove('hidden');
+                cartContent.classList.add('hidden');
+                return;
+            }
+            
+            emptyMessage.classList.add('hidden');
+            cartContent.classList.remove('hidden');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = total.toFixed(2);
+            
+            cartItemsList.innerHTML = cart.map(item => `
+                <div class="card bg-base-100 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="flex items-center gap-4">
+                            <img src="${item.image}" class="w-16 h-16 rounded-lg object-cover" />
+                            <div class="flex-1">
+                                <h4 class="font-semibold">${item.name}</h4>
+                                <p class="text-gray-600">${item.price}</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="btn btn-sm btn-circle btn-outline" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                                <span class="w-8 text-center">${item.quantity}</span>
+                                <button class="btn btn-sm btn-circle btn-outline" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+                                <button class="btn btn-sm btn-ghost text-error" onclick="removeFromCart(${item.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            document.getElementById('cart_modal').close();
+            updateCheckoutModal();
+            document.getElementById('checkout_modal').showModal();
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkout_modal').close();
+        }
+
+        function updateCheckoutModal() {
+            const checkoutItems = document.getElementById('checkout-items');
+            const checkoutTotal = document.getElementById('checkout-total');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            checkoutTotal.textContent = total.toFixed(2);
+            
+            checkoutItems.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center text-sm">
+                    <span>${item.name} x${item.quantity}</span>
+                    <span>${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('');
+        }
+
+        function placeOrder() {
+            const form = document.getElementById('checkout-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // Simulate order processing
+            document.getElementById('checkout_modal').close();
+            document.getElementById('success_modal').showModal();
+            
+            // Clear cart after successful order
+            setTimeout(() => {
+                clearCart();
+            }, 1000);
+        }
+
+        function closeSuccess() {
+            document.getElementById('success_modal').close();
+        }
+
+        // Generate products
+        function generateProducts() {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = products.map((product, index) => `
+                <div class="card bg-base-100 shadow-sm hover:shadow-sm transition-all duration-300" data-aos="zoom-in" data-aos-delay="${index * 100}">
+                    <figure class="relative overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500" />
+                        ${product.badge ? `<div class="badge ${product.badgeColor} absolute top-4 left-4">${product.badge}</div>` : ''}
+                        <button class="btn btn-circle btn-sm absolute top-4 right-4 bg-white/80 border-none hover:bg-white" onclick="toggleWishlist(${product.id})">
+                            <i class="far fa-heart text-gray-600 hover:text-red-500"></i>
+                        </button>
+                    </figure>
+                    <div class="card-body">
+                        <h3 class="card-title">${product.name}</h3>
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="rating rating-sm">
+                                ${Array(5).fill().map((_, i) => `<input type="radio" class="mask mask-star-2 bg-yellow-400" ${i < product.rating ? 'checked' : ''} disabled />`).join('')}
+                            </div>
+                            <span class="text-sm text-gray-500">(${product.reviews} reviews)</span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="text-2xl font-bold text-primary">${product.price}</span>
+                            ${product.originalPrice ? `<span class="text-sm text-gray-400 line-through">${product.originalPrice}</span>` : ''}
+                        </div>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-primary flex-1" onclick="addToCart(${product.id})">
+                                <i class="fas fa-cart-plus mr-2"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleWishlist(productId) {
+            // Wishlist functionality placeholder
+            console.log('Toggle wishlist for product:', productId);
+        }
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<span class="loading loading-spinner"></span>Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Message Sent!';
+                submitBtn.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('btn-success');
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            generateProducts();
+            updateCartUI();
+        });
+
+        // Prevent localStorage access errors
+        try {
+            cart = JSON.parse(localStorage.getItem('miskBloomingCart')) || [];
+        } catch (error) {
+            cart = [];
+            console.warn('localStorage not available, using memory storage');
+        }
+    </script>
+</body>
+</html>
